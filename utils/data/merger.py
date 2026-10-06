@@ -17,21 +17,25 @@ my_parser.add_argument("--output", "-o", dest="output_path", type=str, help="The
 if __name__ == "__main__":
     args = my_parser.parse_args()
     # Load FinQA
-    with open(os.path.join(args.finqa_path, 'train_retrieve.json'), 'r') as f:
+    with open(os.path.join(args.finqa_path, 'train.json'), 'r') as f:
         finqa_train = json.load(f)
-    with open(os.path.join(args.finqa_path, 'dev_retrieve.json'), 'r') as f:
+    with open(os.path.join(args.finqa_path, 'dev.json'), 'r') as f:
         finqa_dev = json.load(f)
-    with open(os.path.join(args.finqa_path, 'test_retrieve.json'), 'r') as f:
+    with open(os.path.join(args.finqa_path, 'test.json'), 'r') as f:
         finqa_test = json.load(f)
     # Load TAT-QA
     with open(os.path.join(args.tatqa_path, 'tatqa_dataset_train_finqa.json'), 'r') as f:
         tatqa_train = json.load(f)
     # TAT-QA dev set to be split 230-307
     with open(os.path.join(args.tatqa_path, 'tatqa_dataset_dev_finqa.json'), 'r') as f:
-        tatqa = json.load(f)
-        random.shuffle(tatqa)
-        tatqa_dev = tatqa[:230]
-        tatqa_test = tatqa[230:]
+        tatqa_dev = json.load(f)
+        #tatqa = json.load(f)
+        #random.shuffle(tatqa)
+        #tatqa_dev = tatqa[:230]
+        #tatqa_test = tatqa[230:]
+        # TAT-QA dev set to be split 230-307
+    with open(os.path.join(args.tatqa_path, 'tatqa_dataset_test_finqa.json'), 'r') as f:
+        tatqa_test = json.load(f)
     # Load HiTab
     with open(os.path.join(args.hitab_path, 'hitab_dataset_train_finqa.json'), 'r') as f:
         hitab_train = json.load(f)

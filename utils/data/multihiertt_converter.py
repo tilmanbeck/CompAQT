@@ -49,12 +49,20 @@ class Table:
         for row in tree.find_all('th'):
             r = []
             for cell in row.find_all('td'):
-                r.append(cell.text)
+                colspan = cell.get('colspan', False)
+                if colspan:
+                    r.extend([cell.text] * int(colspan))
+                else:
+                    r.append(cell.text)
             output.append(r)
         for row in tree.find_all('tr'):
             r = []
             for cell in row.find_all('td'):
-                r.append(cell.text)
+                colspan = cell.get('colspan', False)
+                if colspan:
+                    r.extend([cell.text] * int(colspan))
+                else:
+                    r.append(cell.text)
             output.append(r)
         return output
 

@@ -1,3 +1,6 @@
 */__pycache__/*
 datasets/*
 dataset/*
+.DS_Store
+.idea/
+data/
